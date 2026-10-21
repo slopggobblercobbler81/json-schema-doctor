@@ -1,0 +1,45 @@
+name: "🐛 Bug Report"
+description: File a bug report to help us improve stability
+title: "[Bug]: "
+labels: ["status: triage-needed", "priority: critical"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this issue!
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of the tool are you running?
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps To Reproduce
+      description: Detailed steps to reproduce the issue.
+      placeholder: |
+        1. Run command '...'
+        2. See error '...'
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severely does this affect your workflow?
+      options:
+        - Critical (Blocks workflow)
+        - Moderate (Workaround available)
+        - Minor (Cosmetic/documentation)
+    validations:
+      required: true
