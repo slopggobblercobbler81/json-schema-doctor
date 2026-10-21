@@ -112,3 +112,17 @@ class SchemaValidator:
             )
 
         return ValidationResult(is_valid=False, errors=details)
+
+
+def check_numeric_bounds_coherence(schema: Dict[str, Any]) -> List[str]:
+    """Validates that minimum is not strictly greater than maximum in schema properties."""
+    issues: List[str] = []
+    props = schema.get("properties", {})
+    if isinstance(props, dict):
+        for prop_name, prop_val in props.items():
+            if isinstance(prop_val, dict):
+                minimum = prop_val.get("minimum")
+                maximum = prop_val.get("maximum")
+                if minimum is not None and maximum is not None and minimum > maximum:
+                    issues.append(f"Property '{prop_name}' has minimum ({minimum}) > maximum ({maximum})")
+    return issues
