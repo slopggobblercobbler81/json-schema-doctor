@@ -1,5 +1,5 @@
-feat(validator): add get_required_fields list extraction helper
+feat(validator): add is_string_property helper function
 
-Provide helper method extracting declared required property keys from an object schema.
+Provide type inspector helper verifying string schema declarations.
 
 Co-authored-by: Stephen Cork <slopggobblercobbler81@users.noreply.github.com>
