@@ -1,5 +1,5 @@
-feat(validator): add is_boolean_property helper function
+feat(validator): add get_required_fields list extraction helper
 
-Provide type inspector helper verifying boolean schema declarations.
+Provide helper method extracting declared required property keys from an object schema.
 
 Co-authored-by: Stephen Cork <slopggobblercobbler81@users.noreply.github.com>
