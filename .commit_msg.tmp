@@ -1,0 +1,5 @@
+feat(validator): add check_numeric_bounds_coherence rule for numeric constraints
+
+Provide semantic validator verifying minimum <= maximum numeric bounds across JSON Schema definitions.
+
+Co-authored-by: Stephen Cork <stephencork81@gmail.com>
