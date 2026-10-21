@@ -126,3 +126,17 @@ def check_numeric_bounds_coherence(schema: Dict[str, Any]) -> List[str]:
                 if minimum is not None and maximum is not None and minimum > maximum:
                     issues.append(f"Property '{prop_name}' has minimum ({minimum}) > maximum ({maximum})")
     return issues
+
+
+def check_array_bounds_coherence(schema: Dict[str, Any]) -> List[str]:
+    """Validates that minItems is not greater than maxItems in array schema definitions."""
+    issues: List[str] = []
+    props = schema.get("properties", {})
+    if isinstance(props, dict):
+        for prop_name, prop_val in props.items():
+            if isinstance(prop_val, dict):
+                min_items = prop_val.get("minItems")
+                max_items = prop_val.get("maxItems")
+                if min_items is not None and max_items is not None and min_items > max_items:
+                    issues.append(f"Property '{prop_name}' has minItems ({min_items}) > maxItems ({max_items})")
+    return issues

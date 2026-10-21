@@ -1,5 +1,5 @@
-feat(validator): add check_numeric_bounds_coherence rule for numeric constraints
+feat(validator): add check_array_bounds_coherence helper for array schemas
 
-Provide semantic validator verifying minimum <= maximum numeric bounds across JSON Schema definitions.
+Validate minItems and maxItems semantic coherence in array schema definitions.
 
 Co-authored-by: Stephen Cork <stephencork81@gmail.com>
