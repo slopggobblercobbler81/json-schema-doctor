@@ -144,3 +144,7 @@ def check_array_bounds_coherence(schema: Dict[str, Any]) -> List[str]:
 def is_string_property(prop: Any) -> bool:
     """Returns True if property schema represents string type."""
     return isinstance(prop, dict) and prop.get("type") == "string"
+
+def is_numeric_property(prop: Any) -> bool:
+    """Returns True if property schema represents integer or number."""
+    return isinstance(prop, dict) and prop.get("type") in ("number", "integer")
