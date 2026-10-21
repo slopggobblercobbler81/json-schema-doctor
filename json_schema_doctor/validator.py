@@ -152,3 +152,8 @@ def is_numeric_property(prop: Any) -> bool:
 def is_boolean_property(prop: Any) -> bool:
     """Returns True if property schema represents boolean type."""
     return isinstance(prop, dict) and prop.get("type") == "boolean"
+
+def get_required_fields(schema: Dict[str, Any]) -> List[str]:
+    """Returns list of required field names declared in an object schema."""
+    req = schema.get("required", [])
+    return list(req) if isinstance(req, list) else []
