@@ -140,3 +140,7 @@ def check_array_bounds_coherence(schema: Dict[str, Any]) -> List[str]:
                 if min_items is not None and max_items is not None and min_items > max_items:
                     issues.append(f"Property '{prop_name}' has minItems ({min_items}) > maxItems ({max_items})")
     return issues
+
+def is_string_property(prop: Any) -> bool:
+    """Returns True if property schema represents string type."""
+    return isinstance(prop, dict) and prop.get("type") == "string"

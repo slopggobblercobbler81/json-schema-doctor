@@ -1,5 +1,5 @@
-feat(validator): add check_array_bounds_coherence helper for array schemas
+feat(validator): add is_string_property helper function
 
-Validate minItems and maxItems semantic coherence in array schema definitions.
+Provide type inspector helper verifying string schema declarations.
 
-Co-authored-by: Stephen Cork <stephencork81@gmail.com>
+Co-authored-by: Stephen Cork <slopggobblercobbler81@users.noreply.github.com>
