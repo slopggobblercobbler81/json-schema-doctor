@@ -1,0 +1,21 @@
+feature:
+  - head-branch: ['^feat/.*', '^feature/.*']
+
+fix:
+  - head-branch: ['^fix/.*', '^bugfix/.*', '^hotfix/.*']
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.md', 'docs/**']
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: ['tests/**', '**/test_*.py']
+
+workflows:
+  - changed-files:
+      - any-glob-to-any-file: ['.github/**', '.github/workflows/**']
+
+core:
+  - changed-files:
+      - any-glob-to-any-file: ['json_schema_doctor/**', '*.py']

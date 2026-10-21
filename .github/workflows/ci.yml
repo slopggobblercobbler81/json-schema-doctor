@@ -2,30 +2,55 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
   pull_request:
-    branches: [ main ]
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      test_scope:
+        description: 'Test scope to execute (all, unit, cli)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - unit
+          - cli
+      verbose:
+        description: 'Enable verbose pytest logging'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install .[dev]
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -e ".[dev]"
 
-    - name: Run tests with pytest
-      run: |
-        python -m pytest --cov=json_schema_doctor --cov-report=term-missing
+      - name: Run test suite with pytest & coverage
+        run: |
+          pytest -v --cov=json_schema_doctor --cov-report=term-missing
+
+      - name: Verify CLI execution
+        run: |
+          json-schema-doctor --version
+          json-schema-doctor --help
