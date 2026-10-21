@@ -148,3 +148,7 @@ def is_string_property(prop: Any) -> bool:
 def is_numeric_property(prop: Any) -> bool:
     """Returns True if property schema represents integer or number."""
     return isinstance(prop, dict) and prop.get("type") in ("number", "integer")
+
+def is_boolean_property(prop: Any) -> bool:
+    """Returns True if property schema represents boolean type."""
+    return isinstance(prop, dict) and prop.get("type") == "boolean"

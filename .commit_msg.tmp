@@ -1,5 +1,5 @@
-feat(validator): add is_numeric_property helper function
+feat(validator): add is_boolean_property helper function
 
-Provide type inspector helper verifying numeric/integer schema declarations.
+Provide type inspector helper verifying boolean schema declarations.
 
 Co-authored-by: Stephen Cork <slopggobblercobbler81@users.noreply.github.com>
